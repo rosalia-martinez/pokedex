@@ -1,0 +1,17 @@
+<div id="container" [class.seleccionado]="seleccionado">
+
+    @if (seleccionado) {
+        <img src="/assets/img/flecha.png" alt="" id="flecha">
+    }
+
+    <div id="tarjeta" (click)="clickeado.emit(id)" [class.seleccionado]="seleccionado">
+        <div id="circulo"></div>
+        <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{id}}.png' alt="">
+        <span>No. {{ id }}</span>
+        @if (data) {
+            <span>{{ data?.name | titlecase }}</span>
+        } @else {
+            <span>Buscando Pokémon...</span>
+        }
+    </div>
+</div>

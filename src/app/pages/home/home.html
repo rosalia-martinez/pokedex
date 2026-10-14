@@ -1,0 +1,18 @@
+<main id="container">
+
+    <app-detalle [pokemon]="pokemonSeleccionado" (clicked)="cambiarEstadoDetalle()" [abierto]="detalle"
+        [class.abierto]="detalle"></app-detalle>
+
+    <app-foto-pokemon [pokemon]="pokemonSeleccionado" [ngClass]="{abierto: detalle}"></app-foto-pokemon>
+
+    <div id="tarjetasContainer" #tarjetas (scroll)="onScroll($event)">
+        @for (pokemon of listaPokemon; track pokemon.name) {
+        <app-tarjeta-pokemon [data]="pokemon" [seleccionado]="pokemon.name === pokemonSeleccionado?.name"
+            (clickeado)="tarjetaClickeada($event)"></app-tarjeta-pokemon>
+        }
+
+        @if (cargando) {
+        <img src="/assets/img/spinner.svg" alt="Cargando" id="spinner">
+        }
+    </div>
+</main>
